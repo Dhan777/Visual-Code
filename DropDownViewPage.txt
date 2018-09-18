@@ -1,0 +1,522 @@
+@model BIET.Models.RegistrationStep4
+@{
+Layout = "~/Views/Shared/_BIET_RegistrationLayout.cshtml";
+var message = TempData["Message"] ?? string.Empty;
+var messageStatus = TempData["messageStatus"] ?? string.Empty;
+var messagemidStatus = TempData["messagemidStatus"] ?? string.Empty;
+}
+<section class="wrap container-fluid">
+<div class="row">
+<div class="col-md-12 wrap-heading"><!-- InstanceBeginEditable name="page heading" --><div class="row">
+<div class="col-md-9">
+Communication Details
+</div>
+<div class="col-md-3">
+<div class="text-right required2"> <span>Required Field</span></div>
+</div>
+</div><!-- InstanceEndEditable --></div>
+</div>
+@using (Html.BeginForm())
+{
+<div class="col-md-8 col-md-offset-2 form-wrap">
+<!-- InstanceBeginEditable name="Content" -->
+<div class="alert alert-info fade in alert-dismissible">
+Fill the following details that may be required for communication and click on <strong>Save & Continue</strong> button to proceed further.
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.StudentAlternativeMobile, new { @class = "form-control", @onkeypress = "return isNumber(event,this);", @maxlength = "10", @validateKey = "inputMobile",@errorMessge="Please Fill Student's Alternate Mobile No." })
+<label class="">Student's Alternate Mobile No.</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.StudentAlternativeEmail, new { @class = "form-control", @maxlength="30",@validateKey = "inputEmail",@errorMessge="Please Fill Student's Alternate Email ID" })
+<label class="">Student's Alternate Email ID</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.fatherMobileNo, new { @class = "form-control", @maxlength = "10",@onkeypress = "return isNumber(event,this);", @validateKey = "inputFatherMobileNo",@errorMessge="Please Fill Father's Mobile No." })
+<label class="">Father's Mobile No.</label>
+</div>
+<div class="md-form">
+@Html.TextBoxFor(x => x.fatherEmail, new { @class = "form-control",@maxlength="30" })
+<label class="">Father's Email ID</label>
+</div>
+<div class="md-form">
+@Html.TextBoxFor(x => x.motherMobile, new { @class = "form-control num", @maxlength = "10" })
+<label class="">Mother's Mobile No.</label>
+</div>
+<h4>Correspondence Address</h4>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.correspondenceAddress, new { @class = "form-control", @validateKey = "inputAddress", @maxlength = "250",@errorMessge="Please Fill Corresponding Address" })
+<label class="">Address</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.correspondenceCountryId, (new BIET.Models.MasterModel()).LoadCountry(), "Select", new { @class = "mdb-select form-control select", @validateKey = "inputCCountryId",@errorMessge="Please Select corresponding Country" })
+<label class="active">Country</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.correspondenceStateId, new SelectList(string.Empty), "Select", new { @class = "mdb-select form-control select",@errorMessge="Please Select corresponding State" })
+<label class="active">State</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.correspondenceDistrictId, new SelectList(string.Empty), "Select", new { @class = "mdb-select form-control select", @validateKey = "inputCPinCode",@errorMessge="Please Select corresponding District" })
+<label class="active">District</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.correspondencePincode, new { @class = "form-control num", @validateKey = "inputCPinCode", @maxlength = "6",@errorMessge="Please Fill corresponding Pincode" })
+<label class="">Pin Code</label>
+</div>
+<div class="md-form ">
+@Html.TextBoxFor(x => x.correspondenceSTDCode_LandlineNo, new { @class = "form-control num", @maxlength = "10" })
+<label class="">STD Code &amp; Landline No.</label>
+</div>
+<div class="form-group">
+<label for="sameas">
+<input name="sameas" id="chk" type="checkbox"> Same as Permanent Address</label>
+</div>
+<h4>Permanent Address</h4>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.permanentAddress, new { @class = "form-control", @validateKey = "inputPAddress", @maxlength = "250",@errorMessge="Please Fill Permanent Address" })
+<label class="">Address</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.permanentCountryId, (new BIET.Models.MasterModel()).LoadCountry(), "Select", new { @class = "mdb-select form-control select", @validateKey = "inputPCountry",@errorMessge="Please Select Permanent Country" })
+<label class="active">Country</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.permanentStateId, new SelectList(String.Empty), "Select", new { @class = "mdb-select form-control select", @validateKey = "inputPState",@errorMessge="Please Select Permanent State" })
+<label class="active">State</label>
+</div>
+<div class="md-form required">
+@Html.DropDownListFor(x => x.permanentDistrictId, new SelectList(String.Empty), "Select", new { @class = "mdb-select form-control select", @validateKey = "inputPState",@errorMessge="Please Select Permanent District" })
+<label class="active">District</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.permanentPincode, new { @class = "form-control num", @validateKey = "inputPinCode", @maxlength = "6",@errorMessge="Please Fill Permanent Pincode" })
+<label class="active">Pin Code</label>
+</div>
+<div class="md-form ">
+@Html.TextBoxFor(x => x.permanentSTDCode_LandlineNo, new { @class = "form-control num", @maxlength = "10" })
+<label class="">STD Code &amp; Landline No.</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.GuardianName, new { @class = "form-control Alf", @validateKey = "inputGName",@errorMessge="Please Fill Local Guardian Name",@maxlength = "30" })
+<label class="">Local Guardian Name</label>
+</div>
+<div class="md-form required">
+@Html.TextBoxFor(x => x.GuardianMobileNo, new { @class = "form-control", @validateKey = "inputGMob",@onkeypress = "return isNumber(event,this);", @maxlength = "10",@errorMessge="Please Fill Local Guardian Number" })
+<label class="">Local Guardian Number</label>
+</div>
+@*<div class="clearfix"></div>*@
+<div class="col-md-9 col-md-offset-3">
+<div class="md-form">
+<input type="button" value="Save & Continue" id="SaveBtn" class="btn btn-block waves-effect waves-light btn-lg btn-primary" />
+<input type="reset" id="btnReset" value="Reset" class="btn btn-block waves-effect waves-light btn-lg btn-danger" />
+</div>
+</div><!-- InstanceEndEditable --></div>
+}
+<div class="clearfix"></div>
+</section>
+<script src="~/Content/js/jquery-1.10.2.min.js"></script>
+<script src="~/Content/CustomJS/Validations.js"></script>
+<script src="~/Content/CustomJS/AccountJS.js?V=90"></script>
+<script src="~/Content/js/sweetalert.min.js"></script>
+<link href="~/Content/css/sweetalert.css" rel="stylesheet" />
+<script>
+var message = '@message';
+var messageStatus = '@messageStatus';
+var messagemidStatus = '@messagemidStatus';
+if (message)
+sweetAlert(message, messagemidStatus, messageStatus);
+</script>
+<script>
+$(document).ready(function () {
+var isCdistrictchange = "0";
+var isPdistrictchange = "0";
+var isCStateChange = "0";
+var isPStateChange = "0"
+debugger;
+if ('@Model' != "") {
+if ('@Model.correspondenceCountryId' != "") {
+GetCorrespondenceState('@Model.correspondenceCountryId');
+GetPermanentState('@Model.permanentCountryId');
+GetPermanentDistrict('@Model.permanentStateId');
+GetCorrespondenceDistrict('@Model.correspondenceStateId');
+}
+}
+var isOk;
+var Msg = "";
+var Cntrl = "";
+$('#chk').click(function ()
+{
+if ($('#chk').is(":checked"))
+{
+//Permanenet District ID------------------------------
+if ($("#permanentStateId").val() != 38) {
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetState", "Master")',
+datatype: 'json',
+data: { Country: $("#correspondenceCountryId").val() },
+success: function (Response) {
+$('#permanentStateId').html("");
+$('#permanentStateId').append('<option value=""> Select</option>');
+debugger;
+$.each(Response, function (index, Value) {
+$('#permanentStateId').append('<option value=' + Value.StateID + '>' + Value.StateName + '</option>');
+});
+$("#permanentStateId").val($("#correspondenceStateId").val());
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+else
+{
+$('#permanentStateId').html("");
+$('#permanentStateId').append('<option value=38>Other</option>');
+}
+if ($("#correspondenceStateId").val() != 38) {
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetDistrict", "Master")',
+datatype: 'json',
+data: { State: $("#correspondenceStateId").val() },
+success: function (Response) {
+$('#permanentDistrictId').html("");
+debugger;
+$('#permanentDistrictId').append('<option value="">Select</option>');
+$.each(Response, function (index, Value) {
+$('#permanentDistrictId').append('<option value=' + Value.Value + '>' + Value.Text + '</option>');
+});
+$("#permanentDistrictId").val($("#correspondenceDistrictId").val());
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+else
+{
+$('#permanentDistrictId').html("").append('<option value="1000">Other</option>');
+$('#permanentStateId').html("").append('<option value="38">Other</option>');
+}
+// PErmanenet District ID ---------------------
+// isPdistrictchange = "1"
+// GetPermanentDistrict($("#correspondenceStateId").val());
+$("#permanentAddress").val($("#correspondenceAddress").val()).parent().find("label").attr("class","active");
+$("#permanentCountryId").val($("#correspondenceCountryId").val());
+$("#permanentPincode").val($("#correspondencePincode").val()).parent().find("label").attr("class", "active");
+$("#permanentSTDCode_LandlineNo").val($("#correspondenceSTDCode_LandlineNo").val()).parent().find("label").attr("class", "active");
+// $("#permanentDistrictId").val($("#correspondenceDistrictId").val());
+//$("#permanentAddress").val($("#correspondenceAddress").val());
+//$("#permanentAddress").val($("#correspondenceAddress").val());
+}
+else {
+$("#permanentAddress").val("").parent().find("label").removeAttr("class");
+$("#permanentCountryId").val("");
+$("#permanentStateId").val("");
+$("#permanentPincode").val("").parent().find("label").removeAttr("class");
+$("#permanentSTDCode_LandlineNo").val("").parent().find("label").removeAttr("class");
+$("#permanentAddress").val("").parent().find("label").removeAttr("class");
+$("#permanentAddress").val("").parent().find("label").removeAttr("class");
+$("#permanentDistrictId").val("");
+}
+});
+//-----------------------------------------------------------
+$('#correspondenceCountryId').change(function () {
+debugger;
+var CountryId = $('#correspondenceCountryId').val();
+GetCorrespondenceState(CountryId);
+$('#correspondenceDistrictId').html("").append("<option>Select</option>");
+});
+$("#correspondenceStateId").change(function ()
+{
+debugger;
+var DistrictId = $("#correspondenceStateId").val();
+GetCorrespondenceDistrict(DistrictId);
+});
+$('#permanentCountryId').change(function () {
+debugger;
+var CountryId = $('#permanentCountryId').val();
+GetPermanentState(CountryId)
+$('#permanentDistrictId').html("").append("<option>Select</option>");
+});
+$("#permanentStateId").change(function () {
+debugger;
+var DistrictId = $("#permanentStateId").val();
+GetPermanentDistrict(DistrictId);
+});
+function GetCorrespondenceState(CountryId) {
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetState", "Master")',
+datatype: 'json',
+data: { Country: CountryId },
+success: function (Response) {
+$('#correspondenceStateId').html("");
+$('#correspondenceStateId').append('<option value="">Select</option>');
+if (Response.length <= 0) {
+$('#correspondenceStateId').append('<option value="38">Other</option>')
+}
+else {
+$.each(Response, function (index, Value) {
+$('#correspondenceStateId').append('<option value=' + Value.StateID + '>' + Value.StateName + '</option>');
+});
+}
+if ('@Model.correspondenceStateId' != "0" && isCStateChange=="0") {
+$('#correspondenceStateId').val('@Model.correspondenceStateId');
+isCStateChange = "1";
+}
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+function GetCorrespondenceDistrict(StateId)
+{
+if (StateId !=38) {
+debugger;
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetDistrict", "Master")',
+datatype: 'json',
+data: { State: StateId },
+success: function (Response) {
+$('#correspondenceDistrictId').html("");
+// if (Response.length <= 0) {
+$('#correspondenceDistrictId').append('<option value="">Select</option>');
+// }
+// else {
+$.each(Response, function (index, Value) {
+$('#correspondenceDistrictId').append('<option value=' + Value.Value + '>' + Value.Text + '</option>');
+});
+if ('@Model.correspondenceDistrictId' != "0" && isCdistrictchange == "0") {
+$('#correspondenceDistrictId').val('@Model.correspondenceDistrictId');
+isCdistrictchange = "1";
+}
+//}
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+else {
+$('#correspondenceDistrictId').html("");
+isCdistrictchange = "1";
+$('#correspondenceDistrictId').append('<option value="1000">Other</option>');
+}
+}
+//-----------------------------------------------------------
+function GetPermanentState(CountryId) {
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetState", "Master")',
+datatype: 'json',
+data: { Country: CountryId },
+success: function (Response) {
+$('#permanentStateId').html("");
+$('#permanentStateId').append('<option value=""> Select</option>');
+debugger;
+if (Response.length<=0) {
+$('#permanentStateId').append('<option value="38">Other</option>')
+}
+else {
+$.each(Response, function (index, Value) {
+$('#permanentStateId').append('<option value=' + Value.StateID + '>' + Value.StateName + '</option>');
+});
+}
+if ('@Model.permanentStateId' != "0" && isPStateChange == "0") {
+isPStateChange = "1";
+$('#permanentStateId').val('@Model.permanentStateId');
+}
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+function GetPermanentDistrict(StateId) {
+if (StateId != 38) {
+debugger;
+$.ajax({
+type: "Get",
+url: '@Url.Action("GetDistrict", "Master")',
+datatype: 'json',
+data: { State: StateId },
+success: function (Response) {
+$('#permanentDistrictId').html("");
+debugger;
+//if (Response.length <= 0) {
+$('#permanentDistrictId').append('<option value="">Select</option>');
+// }
+// else {
+$.each(Response, function (index, Value) {
+$('#permanentDistrictId').append('<option value=' + Value.Value + '>' + Value.Text + '</option>');
+});
+if ('@Model.permanentDistrictId' != "0" && isPdistrictchange == "0") {
+debugger;
+$('#permanentDistrictId').val('@Model.permanentDistrictId');
+isPdistrictchange = "1"
+}
+// }
+},
+error: function (Message, xhtr) {
+console.log(Message, xhtr);
+}
+});
+}
+else {
+$('#permanentDistrictId').html("");
+isPdistrictchange = "1"
+$('#permanentDistrictId').append('<option value="1000">Other</option>');
+}
+}
+//-------------------------------
+$("#StudentAlternativeEmail").on("focusout", function () {
+debugger;
+if (!(ValidateEmail($(this).val()))) {
+Msg = "Enter Valid " + $(this).parent().find('label').text();
+$(this).focus();
+Cntrl = $(this);
+swal(Msg, "", "warning");
+isOk = false;
+return false;
+}
+else {
+Msg = "";
+}
+});
+$("#fatherEmail").on("focusout", function () {
+debugger;
+if ($("#fatherEmail").val().length != 0) {
+if (!(ValidateEmail($(this).val()))) {
+Msg = "Enter Valid " + $(this).parent().find('label').text();
+$(this).focus();
+Cntrl = $(this);
+swal(Msg, "", "warning");
+isOk = false;
+return false;
+}
+else {
+Msg = "";
+}
+}
+else {
+Msg = "";
+}
+});
+$("#StudentAlternativeMobile").on("focusout", function ()
+{
+debugger;
+if (!ValidateMobileNo($("#StudentAlternativeMobile").val())) {
+swal("Enter Valid Student's Alternate No", "Mobile No must be in 10 digit.", "warning");
+$("#StudentAlternativeMobile").focus();
+}
+});
+$("#fatherMobileNo").on("focusout", function () {
+debugger;
+if (!ValidateMobileNo($("#fatherMobileNo").val())) {
+swal("Enter Valid Father Mobile No", "Mobile No. must be in 10 digit.", "warning");
+$("#fatherMobileNo").focus();
+}
+});
+$("#GuardianMobileNo").on("focusout", function () {
+debugger;
+if (!ValidateMobileNo($("#GuardianMobileNo").val())) {
+swal("Enter Valid Guardian Mobile No", "Mobile No. must be in 10 digit.", "warning");
+$("#GuardianMobileNo").focus();
+}
+});
+$("#motherMobile").on("focusout", function ()
+{
+if ($("#motherMobile").val().length != 0) {
+if (!ValidateMobileNo($("#motherMobile").val())) {
+swal("Enter Valid Mother's Mobile No", "Mobile No. must be in 10 digit.", "warning");
+$("#motherMobile").focus();
+}
+}
+});
+$('#SaveBtn').click(function (e) {
+debugger;
+isOk = true;
+$('[validateKey*="input"]').each(function () {
+if (Msg != "") {
+$(Cntrl).focus();
+swal(Msg, "", "warning");
+isOk = false;
+return false;
+}
+else {
+if ($(this).val() == "") {
+$(this).focus();
+swal($(this).attr("errorMessge"), "", "warning");
+e.preventDefault();
+isOk = false;
+return false;
+}
+}
+});
+if (isOk != true) {
+e.preventDefault();
+isOk = false;
+return false;
+}
+if (isOk == true) {
+swal({
+title: "Are you sure you want to save your Address and Contact Details?",
+text: "",
+type: "warning",
+showCancelButton: true,
+confirmButtonClass: "btn-danger",
+confirmButtonText: "Yes, Submit it!",
+cancelButtonText: "No, cancel it!",
+closeOnConfirm: false,
+closeOnCancel: false
+},
+function (isConfirm) {
+if (isConfirm) {
+//swal("Deleted!", "Your imaginary file has been deleted.", "success");
+$('form').submit();
+} else {
+swal("Cancelled", "Your Address and Contact Details has not been Saved :)", "error");
+e.preventDefault();
+isOk = false;
+return false;
+}
+});
+}
+});
+$('input[type="text"].num').bind('keydown', function (e) {
+// Allow: backspace, delete, tab, escape, enter and .
+if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+// Allow: Ctrl+A
+(e.keyCode == 65 && e.ctrlKey === true) ||
+// Allow: Ctrl+C
+(e.keyCode == 67 && e.ctrlKey === true) ||
+// Allow: Ctrl+X
+(e.keyCode == 88 && e.ctrlKey === true) ||
+// Allow: home, end, left, right
+(e.keyCode >= 35 && e.keyCode <= 39)) {
+// let it happen, don't do anything
+return;
+}
+// Ensure that it is a number and stop the keypress
+if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+e.preventDefault();
+}
+});
+$('input[type="text"].Alf').bind('keydown', function (e) {
+// Allow: backspace, delete, tab, escape, enter and .
+var key = e.keyCode;
+if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1) {
+return true;
+}
+else if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+e.preventDefault();
+}
+});
+//-------------------------------
+});
+</script>

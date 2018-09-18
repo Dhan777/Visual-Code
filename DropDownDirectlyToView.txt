@@ -1,0 +1,151 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace NNPLalitpur.Models
+{
+public class CommonMaster
+{
+#region Load District
+public System.Web.Mvc.SelectList LoadDistrict(Int32 StateId,Int32 DistrictId=0)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<District>();
+lst = _objdb.GetDistrict(StateId, DistrictId).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "DistrictId", "DistrictName");
+return sb;
+}
+#endregion
+#region Load State
+public System.Web.Mvc.SelectList LoadState(Int32 CountryId)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<State>();
+lst = _objdb.GetState(CountryId).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "StateID", "StateName");
+return sb;
+}
+#endregion
+#region Load Ward
+public System.Web.Mvc.SelectList LoadWard(Int32 WardNumber)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<Ward>();
+lst = _objdb.GetWard(WardNumber).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "WardNumber", "WardName");
+return sb;
+}
+#endregion
+#region Load Area
+public System.Web.Mvc.SelectList LoadArea(Int32 AreaId)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<Area>();
+lst = _objdb.GetArea(AreaId).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "AreaId", "AreaName");
+return sb;
+}
+#endregion
+#region Load Title
+public System.Web.Mvc.SelectList LoadTitle(Int32 TitleId)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<Title>();
+lst = _objdb.GetTitle(TitleId).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "TitleId", "TitleName");
+return sb;
+}
+#endregion
+#region Load Designation
+public System.Web.Mvc.SelectList LoadDesignation(Int32 DesignationID)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<Designation>();
+lst = _objdb.GetDesignation(DesignationID).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "DesignationID", "DesignationName");
+return sb;
+}
+#endregion
+#region Load Property Category
+public System.Web.Mvc.SelectList LoadProCategory(String PropertyCategoryCode)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<PropertyCat>();
+lst = _objdb.GetProCategory(PropertyCategoryCode).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "PropertyCategoryCode", "PropertyCategory");
+return sb;
+}
+#endregion
+#region Load Property Status
+public System.Web.Mvc.SelectList LoadProStatus(String PropertyCategoryCode)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<PropertyStatus>();
+lst = _objdb.GetPropertyStatus(PropertyCategoryCode).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "PropertyStatusCode", "PropertyStatusName");
+return sb;
+}
+#endregion
+#region Load Property Type
+public System.Web.Mvc.SelectList LoadProType(String PropertyTypeCode)
+{
+NPPLalitpur_DbContext _objdb = new NPPLalitpur_DbContext();
+var lst = new List<PropertyType>();
+lst = _objdb.GetPropertyType(PropertyTypeCode).ToList();
+System.Web.Mvc.SelectList sb = new System.Web.Mvc.SelectList(lst, "PropertyTypeCode", "PropertyTypeName");
+return sb;
+}
+#endregion
+}
+public class District
+{
+public Int32 DistrictId { get; set; }
+public String DistrictName { get; set; }
+public Int32 StateID { get; set; }
+}
+public class State
+{
+public Int32 StateId { get; set; }
+public String StateName { get; set; }
+}
+public class Ward
+{
+public Int32 WardNumber { get; set; }
+public String WardName { get; set; }
+}
+public class Area
+{
+public Int32 AreaId { get; set; }
+public String AreaName { get; set; }
+public String WardNumber { get; set; }
+}
+public class Title
+{
+public Int32 TitleId { get; set; }
+public String TitleName { get; set; }
+}
+public class Designation
+{
+public Int32 DesignationID { get; set; }
+public String DesignationName { get; set; }
+}
+public class PropertyCat
+{
+public String PropertyCategoryCode { get; set; }
+public String PropertyCategory { get; set; }
+}
+public class PropertyStatus
+{
+public String PropertyStatusCode { get; set; }
+public String PropertyStatusName { get; set; }
+}
+public class PropertyType
+{
+public String PropertyTypeCode { get; set; }
+public String PropertyTypeName { get; set; }
+}
+public class VerifierList
+{
+public Int64 VerifierID { get; set; }
+public string VerifierName { get; set; }
+}
+}
